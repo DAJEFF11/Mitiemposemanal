@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:paddingStart="18dp"
+    android:paddingEnd="18dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="16dp">
+
+    <!-- Encabezado Estilo Dashboard -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_card_task"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MiTiempoSemanal"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"/>
+
+        <TextView
+            android:id="@+id/tvHeaderInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jeffrey Chiroque · v0.1.0 (1)"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            android:layout_marginTop="2dp"/>
+    </LinearLayout>
+
+    <!-- Pestañas de Navegación -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/btnTabTasks"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Tareas"
+            android:backgroundTint="@color/primary"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            style="?attr/materialButtonStyle"/>
+
+        <Button
+            android:id="@+id/btnTabCategories"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Categorías"
+            android:backgroundTint="@color/text_secondary"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <!-- Contenedor Dinámico -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- SECCIÓN TAREAS -->
+        <LinearLayout
+            android:id="@+id/layoutTasksSection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnAddTask"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="+ Nueva Tarea"
+                android:backgroundTint="@color/accent"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp"/>
+
+            <ListView
+                android:id="@+id/listViewTasks"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="10dp"
+                android:clipToPadding="false"/>
+        </LinearLayout>
+
+        <!-- SECCIÓN CATEGORÍAS -->
+        <LinearLayout
+            android:id="@+id/layoutCategoriesSection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btnAddCategory"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="+ Nueva Categoría"
+                android:backgroundTint="@color/accent"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp"/>
+
+            <ListView
+                android:id="@+id/listViewCategories"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="10dp"
+                android:clipToPadding="false"/>
+        </LinearLayout>
+
+    </FrameLayout>
+</LinearLayout>
