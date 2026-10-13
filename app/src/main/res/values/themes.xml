@@ -1,7 +1,13 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.Mitiemposemanal" parent="Theme.Material3.DayNight.NoActionBar">
+<resources>
+    <style name="Base.Theme.MiTiempoSemanal" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
-        <item name="colorSecondary">@color/accent</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="android:colorAccent">@color/primary</item>
+        <item name="android:navigationBarColor">@color/background</item>
+        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowBackground">@color/background</item>
     </style>
+
+    <style name="Theme.MiTiempoSemanal" parent="Base.Theme.MiTiempoSemanal" />
 </resources>

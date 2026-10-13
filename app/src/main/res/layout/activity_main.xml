@@ -1,106 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/background"
-    android:fitsSystemWindows="true"
-    android:paddingStart="18dp"
-    android:paddingEnd="18dp"
-    android:paddingTop="12dp"
-    android:paddingBottom="16dp">
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    tools:context=".MainActivity">
 
-    <!-- Encabezado Estilo Dashboard -->
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/bg_card_task"
-        android:padding="16dp"
-        android:layout_marginBottom="16dp">
+        android:layout_marginTop="20dp"
+        android:text="@string/app_name"
+        android:textColor="@color/text_primary"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="MiTiempoSemanal"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/primary"/>
-
-        <TextView
-            android:id="@+id/tvHeaderInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Jeffrey Chiroque · v0.1.0 (1)"
-            android:textColor="@color/text_secondary"
-            android:textSize="13sp"
-            android:layout_marginTop="2dp"/>
-    </LinearLayout>
-
-    <!-- Pestañas de Navegación -->
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvHeaderInfo"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        tools:text="Jeffrey Chiroque · v0.2.0 (2)" />
+
+    <LinearLayout
+        android:id="@+id/tabBar"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
-        android:weightSum="2"
-        android:layout_marginBottom="16dp">
+        android:weightSum="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvHeaderInfo">
 
         <Button
             android:id="@+id/btnTabTasks"
+            style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="4dp"
             android:layout_weight="1"
-            android:text="Tareas"
-            android:backgroundTint="@color/primary"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            style="?attr/materialButtonStyle"/>
+            android:text="@string/tasks" />
 
         <Button
             android:id="@+id/btnTabCategories"
+            style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
-            android:text="Categorías"
-            android:backgroundTint="@color/text_secondary"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:layout_marginStart="8dp"/>
+            android:text="@string/categories" />
+
+        <Button
+            android:id="@+id/btnTabEvents"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            android:text="@string/events" />
     </LinearLayout>
 
-    <!-- Contenedor Dinámico -->
     <FrameLayout
-        android:layout_width="match_parent"
+        android:id="@+id/content"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabBar">
 
-        <!-- SECCIÓN TAREAS -->
         <LinearLayout
             android:id="@+id/layoutTasksSection"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <Button
                 android:id="@+id/btnAddTask"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:text="+ Nueva Tarea"
-                android:backgroundTint="@color/accent"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:layout_marginBottom="12dp"/>
+                android:layout_height="wrap_content"
+                android:text="@string/add_task" />
+
+            <TextView
+                android:id="@+id/tvEmptyTasks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="@string/no_tasks"
+                android:textColor="@color/text_secondary" />
 
             <ListView
                 android:id="@+id/listViewTasks"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="@android:color/transparent"
-                android:dividerHeight="10dp"
-                android:clipToPadding="false"/>
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:divider="@color/divider"
+                android:dividerHeight="1dp" />
         </LinearLayout>
 
-        <!-- SECCIÓN CATEGORÍAS -->
         <LinearLayout
             android:id="@+id/layoutCategoriesSection"
             android:layout_width="match_parent"
@@ -111,21 +124,131 @@
             <Button
                 android:id="@+id/btnAddCategory"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:text="+ Nueva Categoría"
-                android:backgroundTint="@color/accent"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:layout_marginBottom="12dp"/>
+                android:layout_height="wrap_content"
+                android:text="@string/add_category" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                android:text="@string/tap_to_edit"
+                android:textColor="@color/text_secondary" />
 
             <ListView
                 android:id="@+id/listViewCategories"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="@android:color/transparent"
-                android:dividerHeight="10dp"
-                android:clipToPadding="false"/>
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:divider="@color/divider"
+                android:dividerHeight="1dp" />
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/layoutEventsSection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/register_time"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etEventTask"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_input"
+                android:hint="@string/search_task_hint"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"
+                android:inputType="textCapSentences"
+                android:maxLines="1"
+                android:padding="14dp" />
+
+            <ListView
+                android:id="@+id/listViewSuggestions"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@drawable/bg_panel"
+                android:divider="@color/divider"
+                android:dividerHeight="1dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvSelectedCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="@string/no_category_selected"
+                android:textColor="@color/text_secondary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnStartEvent"
+                    tools:ignore="ButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:text="@string/start" />
+
+                <Button
+                    android:id="@+id/btnFinishEvent"
+                    tools:ignore="ButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:text="@string/finish" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvRunningEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_panel"
+                android:padding="12dp"
+                android:text="@string/no_running_event"
+                android:textColor="@color/text_secondary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/event_history"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvEmptyEvents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="@string/no_events"
+                android:textColor="@color/text_secondary" />
+
+            <ListView
+                android:id="@+id/listViewEvents"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:divider="@color/divider"
+                android:dividerHeight="1dp" />
+        </LinearLayout>
     </FrameLayout>
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
